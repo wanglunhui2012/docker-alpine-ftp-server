@@ -1,4 +1,4 @@
-ARG BASE_IMG=alpine:3.15
+ARG BASE_IMG=alpine:3.17.2
 
 FROM $BASE_IMG AS pidproxy
 
@@ -22,7 +22,7 @@ RUN apk --no-cache add vsftpd tini
 COPY start_vsftpd.sh /bin/start_vsftpd.sh
 COPY vsftpd.conf /etc/vsftpd/vsftpd.conf
 
-EXPOSE 21 21000-21010
+EXPOSE 20 21 21000-21100
 VOLUME /ftp/ftp
 
 ENTRYPOINT ["/sbin/tini", "--", "/bin/start_vsftpd.sh"]
